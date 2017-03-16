@@ -7,13 +7,14 @@ app.use('/src', express.static(__dirname + 'static'))
 app.set('view engine', 'pug')
 app.set('views', __dirname+ '/views')
 
-
+//test route
 app.get('/hoi', (req, res) => {
 	res.send('doei')
 })
 
 
 app.use('/', require( __dirname + '/routes/index'))
+app.use('/', require( __dirname + '/routes/login'))
 
 
 db.conn.sync( {force:true}).then( f => {
