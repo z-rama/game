@@ -15,12 +15,13 @@ app.get('/hoi', (req, res) => {
 
 app.use('/', require( __dirname + '/routes/index'))
 app.use('/', require( __dirname + '/routes/login'))
+app.use('/', require( __dirname + '/routes/register'))
 
 
 db.conn.sync( {force:true}).then( f => {
 	return db.User.create({
 		name: 'MemoryKillah',
-		password: 'krekel',
+		password: 'test',
 		score: 0
 	}).then( f =>{
 		app.listen(8080, c => {
