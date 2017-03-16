@@ -1,5 +1,6 @@
 const express = require('express')
 const app = express()
+const db = require(__dirname + '/modules/database')
 
 app.use('/src', express.static(__dirname + 'static'))
 
@@ -14,6 +15,15 @@ app.get('/hoi', (req, res) => {
 
 app.use('/', require( __dirname + '/routes/index'))
 
-app.listen(8080, c => {
-	console.log('server running on port 8080')
+
+db.conn.sync( {force:true}).then( f => {
+	return db.User.create({
+		name: 'MemoryKillah',
+		password: 'krekel',
+		score: 0
+	}).then( f =>{
+		app.listen(8080, c => {
+			console.log('server running on port 8080')
+		})
+	})
 })
