@@ -8,12 +8,12 @@ routerRegister.use( bodyParser.urlencoded({extended: true}))
 
 
 routerRegister.post('/register', (req, res) => {
-	db.conn.User.create({
+	db.User.create({
 		name: req.body.name,
 		password:req.body.password,
 		score: 0
 	}).then( user => {
-		res.redirect('/', user)
+		res.render('index', {user:user})
 	})
 	
 })
